@@ -1,27 +1,20 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import urllib.request
 import urllib.parse
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html');
 
-REST_API = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp"
 
-values = {
-    'stnId': '108'
-}
-params = urllib.parse.urlencode(values)
-
-url = REST_API + "?" + params
-
-data = urllib.request.urlopen(url).read()
-
-text = data.decode("UTF-8")
-print(text)
+@app.route('/result',methods = ['POST', 'GET'])
+def result():
+   if request.method == 'POST':
+      result = request.form
+      return render_template("result.html",result = result)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.debug = True
+    app.run(host='127.0.0.1', port=5000)
