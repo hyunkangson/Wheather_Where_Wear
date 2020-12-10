@@ -1,20 +1,17 @@
-from flask import Flask, render_template, request
-import urllib.request
-import urllib.parse
-
+from flask import Flask, render_template, request, url_for
 app = Flask(__name__)
+
 
 @app.route('/')
 def home():
     return render_template('home.html');
 
 
-@app.route('/result',methods = ['POST', 'GET'])
+@app.route('/result',methods = ['POST'])
 def result():
-   if request.method == 'POST':
-      result = request.form
-      return render_template("result.html",result = result)
+   location=request.form['location']
+   return render_template('result.html', location=location)
+
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run(host='127.0.0.1', port=5000)
+    app.run(host='127.0.0.2', debug = True)
