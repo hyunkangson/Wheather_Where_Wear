@@ -4,24 +4,15 @@
 	<title>Weather! Where! Wear!</title>
 </head>
 <body>
-    <form action = "http://localhost:5000/result" method = "POST">
 	<h3 style="text-align: center;">Weather! Where! Wear!</h3>
     <h6 style="text-align: center;">오늘 날씨에 어디서 어떤 옷을 입을까?</h6>
-
+    <form method="POST" action= '/result'>
     <center>
     <div style="border: 3px dashed black; width:400px; height: 400px; text-align: center;">
-        <p>Name <input type = "text" name = "지역" /></p>
-        <p><input type = "submit" value = "검색" /></p>
+        Location: <input type="text" name="location" value="Seoul">
+        <input type="submit" value="Submit">
     </div>
     </center>
-
+    </form>
 </body>
 </html>
-
-
-
-
-
-
-
-</form>
