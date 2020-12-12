@@ -10,6 +10,11 @@ app = Flask(__name__)
 def home():
     return render_template('home.html');
 
+@app.route('/userpage',methods=['POST'])
+def userpage():
+    request.form['bbtn']
+    return  render_template('userpage.html');
+
 
 @app.route('/result',methods = ['POST'])
 def result():
@@ -19,7 +24,7 @@ def result():
    data = urlopen(url).read()
    a = json.loads(data)
    we = (a['weather'][0]['main'])
-   ce = round(a['main']['temp'] - 273.15, 2)
+   ce = round(a['main']['temp'] - 273.15,1)
    icon = a['weather'][0]['icon']
 
    #database

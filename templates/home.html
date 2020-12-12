@@ -15,13 +15,18 @@
 	<h3 style="text-align: center;">Weather! Where! Wear!&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick="description()">?</button></h3>
     <h6 style="text-align: center;">오늘 날씨에 어디서 어떤 옷을 입을까?</h6>
 
-    <form method="POST" action= '/result'>
+
     <center>
-    <div style="border: 3px dashed black; width:400px; height: 400px; text-align: center;">
+    <div style="border: 3px dashed black; width:450px; height: 300px; text-align: center;">
+        <form method="POST" action= '/result'><br>
         Location: <input type="text" name="location" value="Seoul"  style="width:80px;height:20px">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit"><br><br>
+        </form>
+
+        <form method="POST" action= '/userpage'>
+        <input type="submit" name="bbtn" value="사용자 정보 공유">
+        </form>
     </div>
     </center>
-    </form>
 </body>
 </html>
