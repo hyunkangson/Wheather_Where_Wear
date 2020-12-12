@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
 	<title>Weather! Where! Wear!</title>
+    <script>
+    function description()
+    {
+       w=open('','','width=800, height=600');
+       w.document.write('<title>도움말</title>');
+       w.document.write('안녕하세요 기온과 지역에 기반한 의복 추천 웹 사이트 Weather! Where! Wear입니다.');
+    }
+    </script>
 </head>
-<body>
-	<h3 style="text-align: center;">Weather! Where! Wear!</h3>
+
+	<h3 style="text-align: center;">Weather! Where! Wear!&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick="description()">?</button></h3>
     <h6 style="text-align: center;">오늘 날씨에 어디서 어떤 옷을 입을까?</h6>
+
     <form method="POST" action= '/result'>
     <center>
     <div style="border: 3px dashed black; width:400px; height: 400px; text-align: center;">
