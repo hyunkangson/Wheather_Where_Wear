@@ -16,10 +16,10 @@ def result():
    data = urlopen(url).read()
    a = json.loads(data)
    we = (a['weather'][0]['main'])
-
    ce = round(a['main']['temp'] - 273.15, 2)
+   icon = a['weather'][0]['icon']
 
-   return render_template('result.html',we=we, ce=ce)
+   return render_template('result.html',we=we, ce=ce, icon=icon)
 
 
 if __name__ == '__main__':
