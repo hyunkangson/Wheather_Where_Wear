@@ -15,6 +15,10 @@ def userpage():
     request.form['bbtn']
     return  render_template('userpage.html');
 
+@app.route('/DataAddition',methods=['POST'])
+def DataAddition():
+    request.form['ddata']
+    return  render_template('DataAddition.html');
 
 @app.route('/result',methods = ['POST'])
 def result():
