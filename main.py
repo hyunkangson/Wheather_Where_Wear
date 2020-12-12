@@ -20,6 +20,33 @@ def DataAddition():
     request.form['ddata']
     return  render_template('DataAddition.html');
 
+@app.route('/tableAdd',methods=['POST'])
+def sqlAdd():
+    tb_=request.form['tb_']
+    con = sqlite3.connect(tb_ + '.db')
+    c = con.cursor()
+    c.execute("CREATE TABLE " + tb_ + " (tno INT, outer0 varchar(30), top varchar(30), bottom varchar(30), etc varchar(30))")
+
+    o_1=request.form['o_1']; t_1=request.form['t_1']; b_1=request.form['b_1']; e_1=request.form['e_1']
+    o_2=request.form['o_2']; t_2=request.form['t_2']; b_2=request.form['b_2']; e_2=request.form['e_2']
+    o_3=request.form['o_3']; t_3=request.form['t_3']; b_3=request.form['b_3']; e_3=request.form['e_3']
+    o_4=request.form['o_4']; t_4=request.form['t_4']; b_4=request.form['b_4']; e_4=request.form['e_4']
+    o_5=request.form['o_5']; t_5=request.form['t_5']; b_5=request.form['b_5']; e_5=request.form['e_5']
+    o_6=request.form['o_6']; t_6=request.form['t_6']; b_6=request.form['b_6']; e_6=request.form['e_6']
+    o_7=request.form['o_7']; t_7=request.form['t_7']; b_7=request.form['b_7']; e_7=request.form['e_7']
+    o_8=request.form['o_8']; t_8=request.form['t_8']; b_8=request.form['b_8']; e_8=request.form['e_8']
+    c.execute("INSERT INTO " + tb_ + " VALUES (1,'" + o_1 + "','" + t_1 + "','" + b_1 + "','" + e_1 + "')")
+    c.execute("INSERT INTO " + tb_ + " VALUES (2,'" + o_2 + "','" + t_2 + "','" + b_2 + "','" + e_2 + "')")
+    c.execute("INSERT INTO " + tb_ + " VALUES (3,'" + o_3 + "','" + t_3 + "','" + b_3 + "','" + e_3 + "')")
+    c.execute("INSERT INTO " + tb_ + " VALUES (4,'" + o_4 + "','" + t_4 + "','" + b_4 + "','" + e_4 + "')")
+    c.execute("INSERT INTO " + tb_ + " VALUES (5,'" + o_5 + "','" + t_5 + "','" + b_5 + "','" + e_5 + "')")
+    c.execute("INSERT INTO " + tb_ + " VALUES (6,'" + o_6 + "','" + t_6 + "','" + b_6 + "','" + e_6 + "')")
+    c.execute("INSERT INTO " + tb_ + " VALUES (7,'" + o_7 + "','" + t_7 + "','" + b_7 + "','" + e_7 + "')")
+    c.execute("INSERT INTO " + tb_ + " VALUES (8,'" + o_8 + "','" + t_8 + "','" + b_8 + "','" + e_8 + "')")
+    con.commit()
+    con.close()
+    return render_template('DataAddition.html');
+
 @app.route('/result',methods = ['POST'])
 def result():
     #weather api
@@ -50,7 +77,7 @@ def result():
        query='SELECT outer0, top, bottom, etc FROM cloth WHERE tno=7'
    else: query='SELECT outer0, top, bottom, etc FROM cloth WHERE tno=8'
    item = cursor.execute(query).fetchall()
-
+   con.close()
    return render_template('result.html',we=we, ce=ce, icon=icon,location=location,item=item)
 
 

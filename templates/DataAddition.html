@@ -6,14 +6,40 @@
 </head>
 <body>
     <h3 style="text-align: left;">데이터 추가</h3>
-    <div style="border: 3px solid black; width:280px; height: 120px; text-align: right;">
-    지역 이름: <input type="text" name="tb_"><br>
-    아우터: <input type="text" name="o_"><br>
-    상의: <input type="text" name="t_"><br>
-    하의: <input type="text" name="b_"><br>
-    기타: <input type="text" name="e_"><br>
-    </div>
-    <input type="submit" value="Upload" onclick="alert('데이터가 입력이 확인되었습니다.')">
+    <form method="POST" action='/tableAdd'>
+        지역 이름: <input type="text" name="tb_" value="만들고 싶은 지역이름을 입력하세요." >
+        <input type="submit"value="생성" onclick="alert('지역 테이블이 생성되었습니다.')">
+        <table border="2">
+            <tr>
+                <td>기온</td><td>아우터</td><td>상의</td><td>하의</td><td>기타</td>
+            </tr>
+            <tr>
+                <td>27℃~</td><td><input type="text" name="o_1"></td><td><input type="text" name="t_1"><br></td><td><input type="text" name="b_1"><br></td><td><input type="text" name="e_1"><br></td>
+            </tr>
+            <tr>
+                <td>23℃~26℃</td><td><input type="text" name="o_2"></td><td><input type="text" name="t_2"><br></td><td><input type="text" name="b_2"><br></td><td><input type="text" name="e_2"><br></td>
+            </tr>
+            <tr>
+                <td>20℃~22℃</td><td><input type="text" name="o_3"></td><td><input type="text" name="t_3"><br></td><td><input type="text" name="b_3"><br></td><td><input type="text" name="e_3"><br></td>
+            </tr>
+            <tr>
+                <td>17℃~19℃</td><td><input type="text" name="o_4"></td><td><input type="text" name="t_4"><br></td><td><input type="text" name="b_4"><br></td><td><input type="text" name="e_4"><br></td>
+            </tr>
+            <tr>
+                <td>12℃~16℃</td><td><input type="text" name="o_5"></td><td><input type="text" name="t_5"><br></td><td><input type="text" name="b_5"><br></td><td><input type="text" name="e_5"><br></td>
+            </tr>
+            <tr>
+                <td>10℃~11℃</td><td><input type="text" name="o_6"></td><td><input type="text" name="t_6"><br></td><td><input type="text" name="b_6"><br></td><td><input type="text" name="e_6"><br></td>
+            </tr>
+            <tr>
+                <td>6℃~9℃</td><td><input type="text" name="o_7"></td><td><input type="text" name="t_7"><br></td><td><input type="text" name="b_7"><br></td><td><input type="text" name="e_7"><br></td>
+            </tr>
+            <tr>
+                <td>~5℃</td><td><input type="text" name="o_8"></td><td><input type="text" name="t_8"><br></td><td><input type="text" name="b_8"><br></td><td><input type="text" name="e_8"><br></td>
+            </tr>
+        </table>
+    </form>
+
     <button type="button" onclick="location.href='/'">Home</button>
 </body>
 </html>
