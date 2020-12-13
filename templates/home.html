@@ -5,9 +5,13 @@
     <script>
     function description()
     {
-       w=open('','','width=800, height=600');
+       w=open('','','width=800, height=300');
        w.document.write('<title>도움말</title>');
-       w.document.write('안녕하세요 기온과 지역에 기반한 의복 추천 웹 사이트 Weather! Where! Wear입니다.');
+       w.document.write("안녕하세요 기온과 지역에 기반한 의복 추천 웹 사이트 Weather! Where! Wear입니다.",'<br>');
+       w.document.write("메인 페이지에서는 검색을 통해 원하는 지역의 날씨와 의복을 추천받을 수 있습니다.",'<br>','<br>');
+       w.document.write("하지만, 지역별로 습도가 다르고 풍량 등이 다르기에 같은 온도에서 같은 옷을 입지는 않습니다. 이에 자신의 지역에 맞춤 안내를 해드리기 위해 사용자 기반의 데이터 베이스를 운용하고자 합니다. '사용자 정보 공유' 버튼을 통해 해당 페이지로 이동하실 수 있습니다. ",'<br>','<br>');
+       w.document.write("사용자간 정보 공유 페이지에서는 검색을 통해 맞춤 안내를 받으실 수 있고 검색 시 자신이 원하는 데이터가 없으면 '자신의 데이터 공유하기' 버튼을 통해 페이지를 이동하여 직접 데이터를 구성해 다른 이들과의 정보 공유를 하실 수 있습니다.  ",'<br>','<br>');
+       w.document.write('각 페이지에서는 home버튼을 통해 초기화면으로 돌아갈 수 있습니다.');
     }
     </script>
 </head>
