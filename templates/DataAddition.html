@@ -6,9 +6,14 @@
 </head>
 <body>
     <h3 style="text-align: left;">데이터 추가</h3>
-    <form method="POST" action='/tableAdd'>
-        지역 이름: <input type="text" name="tb_" value="만들고 싶은 지역이름을 입력하세요." >
+    <form method ="POST" action='/createTable'>
+        지역이 없으면 추가해주세요:<input type="text" name="table" >
         <input type="submit"value="생성" onclick="alert('지역 테이블이 생성되었습니다.')">
+    </form>
+    <form method="POST" action='/tableAdd'>
+        지역 이름: <input type="text" name="l1" value="지역이름을 입력하세요." >
+        세부 지역: <input type="text" name="l2" value="세부지역을 입력하세요." >
+        <input type="submit"value="생성" onclick="alert('데이터가 추가되었습니다.')">
         <table border="2">
             <tr>
                 <td>기온</td><td>아우터</td><td>상의</td><td>하의</td><td>기타</td>
