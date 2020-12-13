@@ -22,41 +22,46 @@ def userpage_result():
     l1 = request.form['location']
     l2 = request.form['location2']
 
-    location = l2
-    url = 'http://api.openweathermap.org/data/2.5/weather?q=' + location + '&mode=json&APPID=ad91812895dfa17a92a11504c0718122'
-    data = urlopen(url).read()
-    a = json.loads(data)
-    we = (a['weather'][0]['main'])
-    ce = round(a['main']['temp'] - 273.15, 1)
-    icon = a['weather'][0]['icon']
-
     con = sqlite3.connect('user_data.db')
     c = con.cursor()
-    lc = c.execute("SELECT loc FROM "+l1+" WHERE loc='"+l2+"' and tno=1").fetchone()
+    check1 = c.execute("SELECT COUNT(*) FROM sqlite_master WHERE Name='"+l1+"'").fetchone()
+    check2 = c.execute("SELECT COUNT(*) FROM Seoul WHERE loc='"+l2+"'").fetchone()
+    check1 = check1[0]
+    check2 = check2[0]
 
-    if lc==None:
-        return render_template('userpage_result.html',l1=l1,l2=l2)
-    else:
+    if check1==1 and check2>0:
+
+        location = l2
+        url = 'http://api.openweathermap.org/data/2.5/weather?q=' + location + '&mode=json&APPID=ad91812895dfa17a92a11504c0718122'
+        data = urlopen(url).read()
+        a = json.loads(data)
+        we = (a['weather'][0]['main'])
+        ce = round(a['main']['temp'] - 273.15, 1)
+        icon = a['weather'][0]['icon']
+
         if ce >= 27:
-            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + "WHERE tno=1 AND loc='" + l2 + "'")
+            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + " WHERE tno=1 AND loc='" + l2 + "'")
         elif ce >= 23 and ce <= 26:
-            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + "WHERE tno=2 AND loc='" + l2 + "'")
+            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + " WHERE tno=2 AND loc='" + l2 + "'")
         elif ce >= 20 and ce <= 22:
-            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + "WHERE tno=3 AND loc='" + l2 + "'")
+            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + " WHERE tno=3 AND loc='" + l2 + "'")
         elif ce >= 17 and ce <= 19:
-            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + "WHERE tno=4 AND loc='" + l2 + "'")
+            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + " WHERE tno=4 AND loc='" + l2 + "'")
         elif ce >= 12 and ce <= 16:
-            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + "WHERE tno=5 AND loc='" + l2 + "'")
+            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + " WHERE tno=5 AND loc='" + l2 + "'")
         elif ce >= 10 and ce <= 11:
-            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + "WHERE tno=6 AND loc='" + l2 + "'")
+            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + " WHERE tno=6 AND loc='" + l2 + "'")
         elif ce >= 6 and ce <= 9:
-            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + "WHERE tno=7 AND loc='" + l2 + "'")
+            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + " WHERE tno=7 AND loc='" + l2 + "'")
         else:
-            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + "WHERE tno=8 AND loc='" + l2 + "'")
-        item = c.execute(query).fetchall()
+            query = ("SELECT outer0, top, bottom, etc FROM " + l1 + " WHERE tno=8 AND loc='" + l2 + "'")
+        item = c.execute(query).fetchone()
         item = ', '.join(item)
         c.close()
         return render_template('result.html', we=we, ce=ce, icon=icon, location=location, item=item)
+
+    else:
+        return render_template('userpage_result.html', l1=l1, l2=l2)
 
 @app.route('/DataAddition',methods=['POST'])
 def DataAddition():
@@ -69,14 +74,13 @@ def createTable():
     con = sqlite3.connect('user_data.db')
     c = con.cursor()
     c.execute("CREATE TABLE " + table + " (loc varchar(30), tno INT, outer0 varchar(30), top varchar(30), bottom varchar(30), etc varchar(30))")
-    c.commit()
     c.close()
     return render_template('DataAddition.html');
 
 @app.route('/tableAdd',methods=['POST'])
-def sqlAdd():
-    tb_=request.form['lc']
-    loc=request.form['lc2']
+def tableAdd():
+    tb_=request.form['loc1']
+    loc=request.form['loc2']
     con = sqlite3.connect('user_data.db')
     c = con.cursor()
 
