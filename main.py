@@ -25,9 +25,14 @@ def userpage_result():
     con = sqlite3.connect('user_data.db')
     c = con.cursor()
     check1 = c.execute("SELECT COUNT(*) FROM sqlite_master WHERE Name='"+l1+"'").fetchone()
-    check2 = c.execute("SELECT COUNT(*) FROM "+l1+" WHERE loc='"+l2+"'").fetchone()
     check1 = check1[0]
-    check2 = check2[0]
+    if check1 ==1:
+        check2 = c.execute("SELECT COUNT(*) FROM "+l1+" WHERE loc='"+l2+"'").fetchone()
+        check2 = check2[0]
+    else:
+        check2 = 0
+
+
 
     if check1==1 and check2>0:
 
