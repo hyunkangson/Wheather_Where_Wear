@@ -26,15 +26,13 @@ def userpage_result():
     c = con.cursor()
     check1 = c.execute("SELECT COUNT(*) FROM sqlite_master WHERE Name='"+l1+"'").fetchone()
     check1 = check1[0]
-    if check1 ==1:
+    if check1 == 1:
         check2 = c.execute("SELECT COUNT(*) FROM "+l1+" WHERE loc='"+l2+"'").fetchone()
         check2 = check2[0]
     else:
         check2 = 0
 
-
-
-    if check1==1 and check2>0:
+    if check1>=1 and check2>0:
 
         location = l2
         url = 'http://api.openweathermap.org/data/2.5/weather?q=' + location + '&mode=json&APPID=ad91812895dfa17a92a11504c0718122'
